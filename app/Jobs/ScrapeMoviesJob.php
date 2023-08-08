@@ -7,10 +7,13 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Models\Movie;
 use GuzzleHttp\Exception\RequestException;
+use Illuminate\Bus\Queueable;
+use Illuminate\Support\Facades\Config;
 
 class ScrapeMoviesJob implements ShouldQueue
 {
     use InteractsWithQueue;
+    use Queueable;
 
     public $tries = 3; 
     public $retryAfter = 60;
@@ -18,7 +21,7 @@ class ScrapeMoviesJob implements ShouldQueue
     public function handle()
     {
         try {
-            $crawler = Goutte::request('GET', config('app.movies.imdb_url') . '/chart/top');
+            $crawler = Goutte::request('GET', Config::get('app.movies.imdb_url') . '/chart/top');
             $movies = $crawler->filter('.ipc-metadata-list li')->slice(0, 10)->each(function ($node) {
                 $title = $node->filter('.ipc-title__text')->text();
                 $year = $node->filter('.cli-title-metadata-item')->eq(0)->text();

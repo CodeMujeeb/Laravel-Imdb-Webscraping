@@ -21,4 +21,4 @@ This assessment focuses on practical skills in web scraping using Laravel. The g
 ## Running Tests
 
 1. Run unit tests using `php artisan test`.
-
+2. Run tests with coverage report `php artisan test --coverage-html=coverage-report`

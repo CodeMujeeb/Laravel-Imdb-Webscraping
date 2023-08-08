@@ -60,7 +60,7 @@ return [
     'asset_url' => env('ASSET_URL'),
 
     'movies' => array(
-        'imdb_url' => env('IMDB_URL')
+        'imdb_url' => env('IMDB_URL', 'https://www.imdb.com')
     ),
 
     /*

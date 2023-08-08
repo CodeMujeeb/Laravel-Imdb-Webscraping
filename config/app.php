@@ -59,6 +59,10 @@ return [
 
     'asset_url' => env('ASSET_URL'),
 
+    'movies' => array(
+        'imdb_url' => env('IMDB_URL')
+    ),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -168,6 +172,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Weidner\Goutte\GoutteServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -182,7 +187,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
+        'Goutte' => Weidner\Goutte\GoutteFacade::class,
     ])->toArray(),
 
 ];
